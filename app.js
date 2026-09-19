@@ -62,14 +62,35 @@ SCORE.tracks.forEach((t,track)=>{
 });
 
 let ctx,master,compressor,analyser; const voices=new Set();
+function createAudioGraph(){
+  if(ctx)return;
+  const AudioCtor=window.AudioContext||window.webkitAudioContext;
+  if(!AudioCtor)throw new Error('当前浏览器不支持 Web Audio');
+  ctx=new AudioCtor();master=ctx.createGain();master.gain.value=Number($('#volume').value)/100*.42;compressor=ctx.createDynamicsCompressor();compressor.threshold.value=-17;compressor.knee.value=18;compressor.ratio.value=6;analyser=ctx.createAnalyser();analyser.fftSize=2048;master.connect(compressor);compressor.connect(analyser);analyser.connect(ctx.destination);
+}
+// iOS WebKit can report a resumed AudioContext while dropping the first real
+// oscillator if no source was started during the user gesture. Start a silent
+// one synchronously before awaiting resume(), then schedule musical voices.
+function primeAudio(){
+  createAudioGraph();
+  if(ctx.state==='running')return;
+  const buffer=ctx.createBuffer(1,1,ctx.sampleRate);
+  const source=ctx.createBufferSource(),gain=ctx.createGain();
+  gain.gain.value=0;source.buffer=buffer;source.connect(gain);gain.connect(master);source.start(0);
+  const pending=ctx.resume();if(pending?.catch)pending.catch(()=>{});
+}
 async function audioReady(){
   try{
-    if(!ctx){ctx=new (window.AudioContext||window.webkitAudioContext)();master=ctx.createGain();master.gain.value=Number($('#volume').value)/100*.42;compressor=ctx.createDynamicsCompressor();compressor.threshold.value=-17;compressor.knee.value=18;compressor.ratio.value=6;analyser=ctx.createAnalyser();analyser.fftSize=2048;master.connect(compressor);compressor.connect(analyser);analyser.connect(ctx.destination);}
-    if(ctx.state!=='running') await ctx.resume();
+    createAudioGraph();
+    primeAudio();
+    if(ctx.state!=='running')await ctx.resume();
     if(ctx.state!=='running')throw new Error('浏览器未开启音频');
     $('#audio-error').hidden=true;return true;
   }catch(e){$('#audio-error').hidden=false;$('#audio-error').textContent='声音暂时无法启动：'+e.message+'。请点击播放重试，并检查浏览器的声音权限。';return false;}
 }
+document.addEventListener('visibilitychange',()=>{
+  if(document.visibilityState==='visible'&&ctx&&ctx.state!=='running')ctx.resume().catch(()=>{});
+});
 const waves={};
 function wave(f){
   if(waves[f])return waves[f];

@@ -46,6 +46,13 @@ const root=path.resolve(__dirname,'..');
  for(const tab of ['motif','transform','movement','blocks']){await page.click(`[data-tab="${tab}"]`);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`no mobile overflow ${tab}`);}
  await page.click('[data-tab="motif"]');await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:path.join(root,'preview-mobile.png'),fullPage:true,animations:'disabled'});
  checks.push({check:'all-four-tabs-mobile-390px-no-horizontal-overflow',pass:true});
+ const mobileContext=await browser.newContext({viewport:{width:390,height:844},screen:{width:390,height:844},isMobile:true,hasTouch:true,userAgent:'Mozilla/5.0 (iPhone; CPU iPhone OS 17_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.5 Mobile/15E148 Safari/604.1'});
+ const mobilePage=await mobileContext.newPage();const mobileErrors=[];mobilePage.on('pageerror',e=>mobileErrors.push(String(e)));
+ await mobilePage.goto('file://'+path.join(root,'index.html'));await mobilePage.waitForFunction(()=>window.LAB);
+ await mobilePage.locator('#motif-play').tap();await mobilePage.waitForTimeout(450);
+ const mobileFirstPlay=await mobilePage.evaluate(()=>({state:LAB.getState(),rms:LAB.rms(),error:document.querySelector('#audio-error').textContent}));
+ assert.equal(mobileFirstPlay.state.audioState,'running');assert.ok(mobileFirstPlay.rms>.001);assert.deepEqual(mobileErrors,[]);checks.push({check:'fresh-mobile-first-gesture-starts-audio',...mobileFirstPlay});
+ await mobileContext.close();
  await page.click('[data-tab="movement"]');await page.evaluate(()=>LAB.seek(1261.7,true));await page.waitForTimeout(400);assert.equal(await page.evaluate(()=>LAB.getState().playing),false);assert.equal(await page.evaluate(()=>LAB.getState().beat),1262);checks.push({check:'movement-end-stops-at-final-bar',pass:true});
  assert.deepEqual(errors,[]);checks.push({check:'browser-console-errors',errors});
  fs.writeFileSync(path.join(root,'verification.json'),JSON.stringify({at:new Date().toISOString(),environment:'Chromium / local file:// / Web Audio PCM analyser',checks},null,2));

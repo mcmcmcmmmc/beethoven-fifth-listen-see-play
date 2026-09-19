@@ -1,0 +1,123 @@
+{
+  "at": "2026-09-19T14:21:55.954Z",
+  "environment": "Chromium / local file:// / Web Audio PCM analyser",
+  "checks": [
+    {
+      "check": "score-data-and-bar-mapping",
+      "data": {
+        "notes": 10135,
+        "match": 551,
+        "b": [
+          [
+            1,
+            0,
+            1
+          ],
+          [
+            59,
+            116,
+            59
+          ],
+          [
+            125,
+            496,
+            125
+          ],
+          [
+            248,
+            742,
+            248
+          ],
+          [
+            268,
+            782,
+            268
+          ],
+          [
+            269,
+            794,
+            269
+          ],
+          [
+            303,
+            862,
+            303
+          ],
+          [
+            374,
+            1004,
+            374
+          ],
+          [
+            478,
+            1212,
+            478
+          ],
+          [
+            502,
+            1260,
+            502
+          ]
+        ],
+        "blocks": {
+          "A": 4,
+          "B": 8,
+          "C": 10,
+          "D": 4
+        }
+      }
+    },
+    {
+      "check": "motif-real-audio-and-note-highlight",
+      "state": {
+        "playing": false,
+        "beat": 0,
+        "speed": 1,
+        "demo": true,
+        "audioState": "running",
+        "voiceCount": 4,
+        "enabled": [
+          "strings",
+          "wood",
+          "brass",
+          "percussion"
+        ]
+      },
+      "rms": 0.018744598723315027,
+      "highlight": 1
+    },
+    {
+      "check": "slow-loop-controls-and-stop",
+      "pass": true
+    },
+    {
+      "check": "eight-transformations-and-sequential-comparison",
+      "pass": true
+    },
+    {
+      "check": "full-play-and-pause-audio-clock",
+      "pass": true
+    },
+    {
+      "check": "landmarks-solo-seeking-speed-and-loop-boundary",
+      "wrapped": 496.6630385487528,
+      "pass": true
+    },
+    {
+      "check": "sandbox-edit-and-audio-exclusive-with-movement",
+      "pass": true
+    },
+    {
+      "check": "all-four-tabs-mobile-390px-no-horizontal-overflow",
+      "pass": true
+    },
+    {
+      "check": "movement-end-stops-at-final-bar",
+      "pass": true
+    },
+    {
+      "check": "browser-console-errors",
+      "errors": []
+    }
+  ]
+}

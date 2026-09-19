@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#f4f1e9">
+  <title>四个音，一整个世界 · 贝多芬第五交响曲听觉实验室</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="masthead"><a class="brand" href="#"><span class="brand-mark">▮▮▮━</span> 听见结构 <span class="brand-en">LISTEN / SEE / PLAY</span></a><span class="edition">听觉实验室 001 <span>BEETHOVEN · OP. 67</span></span></header>
+<main>
+  <section class="intro"><div><div class="eyebrow">不需要认识五线谱 · 从一次聆听开始</div><h1>四个音，<br>一整个<span>世界。</span></h1><p>贝多芬《第五交响曲》第一乐章<br>音乐听起来一直在变。试着找出：什么一直没变？</p></div><div class="hero-motif" aria-hidden="true"><span>da</span><span>da</span><span>da</span><span>daaa</span><div class="hero-caption">一个小材料，可以走多远？</div></div></section>
+  <nav class="tabs" aria-label="学习步骤"><button class="selected" data-tab="motif"><b>01</b> 认识四个音</button><button data-tab="transform"><b>02</b> 让它变一变</button><button data-tab="movement"><b>03</b> 听见整座建筑</button><button data-tab="blocks"><b>04</b> 积木工作台</button></nav>
+
+  <section id="motif" class="panel active" aria-labelledby="motif-title">
+    <div class="section-head"><div><div class="eyebrow">第一步 / 先听，再看</div><h2 id="motif-title">三个短音。一个长音。</h2></div><span class="tag">约 2 分钟的小实验</span></div>
+    <div class="lesson-grid"><article class="card motif-card"><div class="card-top"><span>开头的四个音</span><span class="muted">高低看位置 · 长短看宽度</span></div><div id="motif-roll" class="note-roll" aria-label="可点击的四音钢琴卷帘"></div><div class="axis"><span>↑ 高音 / ↓ 低音</span><span>时间向右 →</span></div><div class="control-row"><button id="motif-play" class="primary">▶ 听这四个音</button><button id="demo-stop">■ 停止</button><label class="check"><input id="motif-loop" type="checkbox">循环听</label><label class="speed-label">速度 <select id="demo-speed"><option value="1">正常</option><option value="0.65">慢一点 · 65%</option><option value="0.4">很慢 · 40%</option></select></label></div><p id="demo-status" class="status" role="status">点击任一方块，也可以单独听这个音。</p></article>
+    <aside class="listen-guide"><span class="eyebrow">耳朵的小任务</span><h3>先别数音名，<br>跟着敲桌面。</h3><ol><li>听一遍，敲出三个短音。</li><li>听到第四个音时，把手留住。</li><li>再听：第四个音往上走，还是往下落？</li></ol><button id="reveal-motif" class="text-button">我听过了，看看发现 →</button><div id="motif-discovery" class="discovery" hidden><strong>三个音同高，第四个音落下。</strong><p>音高是 G–G–G–E♭。前三个各占半拍，第四个谱面占两拍；演奏时还会延长停留。开头其实先有半拍静默。</p><p>这样短、又容易认出来的音乐种子，叫作<strong>「动机」</strong>。“命运敲门”可以是一种想象，不是理解它的前提。</p></div></aside></div>
+    <div class="observation"><span>试着记住</span><p>你认出它，靠的不只是四个音高。<strong>“短、短、短、长”的时间关系</strong>，也像一张很难弄丢的身份证。</p><button class="text-button" data-next="transform">用耳朵验证一下 →</button></div>
+  </section>
+
+  <section id="transform" class="panel" aria-labelledby="transform-title">
+    <div class="section-head"><div><div class="eyebrow">第二步 / 一次只改一件事</div><h2 id="transform-title">换了模样，你还认得它吗？</h2></div><span class="tag">教学改写 · 非原曲逐句摘录</span></div>
+    <div id="transform-options" class="transform-options" aria-label="选择变化方式"></div>
+    <div class="compare-grid"><article class="card"><div class="card-top"><span><b class="badge">A</b> 原始积木</span><span class="legend-dot original">保留下来的关系</span></div><div id="original-roll" class="note-roll"></div><button id="hear-original">▶ 只听原版</button></article><div class="compare-arrow">→</div><article class="card"><div class="card-top"><span id="variation-title"></span><span class="legend-dot changed">变化的部分</span></div><div id="variation-roll" class="note-roll"></div><button id="hear-variation">▶ 只听变化版</button></article></div>
+    <div class="experiment-footer"><div><p id="variation-description"></p><p id="invariants" class="muted"></p></div><div class="control-row"><button id="hear-compare" class="primary">▶ 原版 → 变化版</button><button class="stop-demo">■ 停止</button><label class="check"><input id="compare-loop" type="checkbox">循环对比</label></div></div>
+    <div id="compare-status" class="status" role="status">先听相同的地方，再听不同的地方。</div>
+    <div class="question-card"><span>听完再揭晓</span><h3>为什么变化这么多，仍然像“同一家人”？</h3><button id="reveal-transform" class="text-button">看看这个现象叫什么 →</button><p id="transform-discovery" hidden>保留可辨认的节奏或音形，再改变音高、音色、片段长度与组合方式，短材料就能长成一段音乐。这叫<strong>「动机发展」</strong>。这些按钮把操作拆开给你听；原曲往往同时使用好几种操作。</p></div>
+    <button class="text-button next-step" data-next="movement">带着这副耳朵，进入整部第一乐章 →</button>
+  </section>
+
+  <section id="movement" class="panel" aria-labelledby="movement-title">
+    <div class="section-head"><div><div class="eyebrow">第三步 / 听声音，也看它从哪里来</div><h2 id="movement-title">庞大的音乐，有一条可以跟随的路。</h2></div><span class="tag">完整音符 · 原谱合成导听</span></div>
+    <div class="movement-layout"><article class="card live-card"><div class="card-top"><span class="live-dot">正在发生 <time id="live-clock">0:00</time></span><span id="measure-label">第 1 小节</span></div><h3 id="now-title">一个短材料，先敲两次门。</h3><p id="now-description"></p><div class="relation"><div><small>它来自哪里</small><button id="source-jump" class="text-button"></button></div><span>→</span><div><small>这里做了什么</small><strong id="operation-label"></strong></div></div><div class="instrument-now"><span>此刻有声音的声部</span><strong id="active-instruments">按下播放，跟着音符看。</strong></div><p id="event-detail" class="status"></p></article>
+    <aside class="card mixer"><h3>把耳朵靠近一个声部</h3><p class="muted">单听，再恢复全部。听听谁在唱，谁在下面敲出节奏。</p><div id="family-controls"></div><button id="all-families" class="text-button">恢复全部声部 ↗</button><p class="small">音色是合成近似。声部分组来自总谱，不表示真实乐器采样。</p></aside></div>
+    <article class="card score-view"><div class="card-top"><span>声部在时间里相遇</span><span class="muted">竖线 = 现在 · 方块 = 原谱音符 · 纵向 = 音高</span></div><canvas id="score-canvas" height="240" aria-label="当前原谱音符的动态钢琴卷帘"></canvas><div class="canvas-legend"><span class="wood">● 木管</span><span class="brass">● 铜管</span><span class="strings">● 弦乐</span><span class="percussion">● 定音鼓</span></div></article>
+    <div class="landmarks"><span>值得停下来听的地方</span><div id="landmark-buttons"></div></div>
+    <details class="source-note"><summary>这段声音从哪里来？哪些部分是教学简化？</summary><p>音高、时值和声部来自 Mutopia 公有领域总谱 MIDI（12 个轨道）；本工具补回呈示部反复。MIDI 源文件统一了力度，没有指挥的自由速度与延长停顿，双簧管独奏也按机械时值播放。因此这里适合追踪音符与结构，不代表交响乐团的真实表现力。全曲合成音色仅作声部区分。</p><p>小节定位从原谱换算；第 268 小节的双簧管自由段在 MIDI 中占了额外时间，已单独处理。结构说明是人工编写的段落导听，实时声部和四音匹配来自音符数据，不是逐秒自动音乐分析。</p><p><a href="https://www.mutopiaproject.org/cgibin/piece-info.cgi?id=941" target="_blank" rel="noopener">Mutopia 原谱与授权 ↗</a> · <a href="https://williamwieland.com/theory/mus715/Beethoven_5/BigPic.pdf" target="_blank" rel="noopener">William Wieland 分段分析 ↗</a> · <a href="assets/Symphony5_1.mid" download>下载原始 MIDI</a> · <a href="assets/Symphony5_1-lys.zip" download>下载可编辑总谱</a></p></details>
+  </section>
+
+  <section id="blocks" class="panel" aria-labelledby="blocks-title">
+    <div class="section-head"><div><div class="eyebrow">第四步 / 把音乐看成一个系统</div><h2 id="blocks-title">少数积木，很多种相遇。</h2></div><span class="tag">结构模型 ≠ 逐音配方</span></div>
+    <div class="block-dictionary"><button data-block="A"><b>A</b><strong>四音种子</strong><span>短短短长，辨认的起点</span></button><button data-block="B"><b>B</b><strong>舒展的歌唱</strong><span>与急促的敲击形成对比</span></button><button data-block="C"><b>C</b><strong>连接与推进</strong><span>把你带向下一个区域</span></button><button data-block="D"><b>D</b><strong>节奏骨架</strong><span>从 A 提取时间关系</span></button></div>
+    <div class="system-grid"><article class="card"><div class="card-top"><span>跟随乐章 / 当前积木关系</span><span id="block-measure">第 1 小节</span></div><div id="block-flow" class="block-flow"></div><p id="block-explanation"></p><p class="small">A / B 是辨认线索，C 是段落角色，D 是 A 的节奏抽象；它们不是四个互不相关的主题。这里是导听地图，不声称解释每一个音。</p><button id="block-follow" class="primary">▶ 跟着乐章看积木</button></article><article class="card sandbox"><div class="card-top"><span>轮到你来组合</span><span class="tag">教学沙盒</span></div><p>点击上方积木，排成你的句子。换一种排列，听“讲述顺序”怎样变化。</p><div id="sequence" class="sequence" aria-label="你选择的积木序列"></div><div class="control-row"><button id="sequence-play" class="primary">▶ 播放组合</button><button id="sequence-undo">撤回</button><button id="sequence-clear">清空</button><button class="stop-demo">■ 停止</button></div><p id="sequence-status" class="status" role="status">B、C 使用原谱短片段；沙盒的拼接不是贝多芬原作。</p></article></div>
+    <div class="question-card"><span>把理解带回耳朵</span><h3>如果温柔的旋律下面，还响着“短短短长”呢？</h3><p>跳到第 63 小节，先单听弦乐，再听全部。新的歌唱区域里，旧材料的节奏并没有就此消失。</p><button id="blocks-to-b" class="text-button">去听这一处叠合 →</button></div>
+  </section>
+
+  <section class="journey" aria-label="全乐章结构时间轴"><div class="journey-heading"><div><span class="eyebrow">第一乐章 / 整体地图</span><p>点击一段，直接去听它。虚线框标出当前材料回望的区域。</p></div><button id="terms-toggle" class="text-button" aria-expanded="false">听过之后，显示结构名称 ＋</button></div><div id="timeline" class="timeline"></div><div class="timeline-ticks"><span>开头</span><span>开头的两片区域会再走一遍 ↺</span><span id="timeline-end"></span></div><p id="timeline-hint" class="small">电脑上按播放时长分配宽度，窄屏自动换行。先认识两片区域，再听它们怎样被拆解、带回和延伸。</p></section>
+</main>
+<footer><span>一副耳朵，一点好奇心。已经够开始了。</span><span>BEETHOVEN / SYMPHONY NO. 5 / I. ALLEGRO CON BRIO</span></footer>
+<div class="transport" aria-label="全乐章播放器"><div class="transport-top"><button id="full-play" class="round-play" aria-label="播放全乐章">▶</button><button id="full-reset" class="reset" aria-label="回到乐章开头">↺</button><div class="transport-title"><strong id="transport-title">原谱合成导听</strong><span id="transport-subtitle">含呈示部反复 · 可离线播放</span></div><div class="time"><span id="current-time">0:00</span><span> / </span><span id="duration-time"></span></div><label class="full-speed-label">速度 <select id="full-speed"><option value="0.5">0.5×</option><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option></select></label><label class="loop-section"><input id="section-loop" type="checkbox">循环本段</label><label class="volume-label">音量 <input id="volume" type="range" min="0" max="100" value="55" aria-label="音量"></label></div><input id="seek" type="range" min="0" max="1000" value="0" step="0.1" aria-label="全乐章播放位置"><div id="audio-error" role="alert" hidden></div></div>
+<script src="score-data.js"></script><script src="app.js"></script>
+</body></html>

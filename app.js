@@ -79,6 +79,14 @@ function primeAudio(){
   gain.gain.value=0;source.buffer=buffer;source.connect(gain);gain.connect(master);source.start(0);
   const pending=ctx.resume();if(pending?.catch)pending.catch(()=>{});
 }
+const audioTriggerIds=new Set(['full-play','block-follow','motif-play','hear-original','hear-variation','hear-compare','sequence-play']);
+function primeFromGesture(e){
+  const button=e.target.closest?.('button');
+  if(!button||(!audioTriggerIds.has(button.id)&&!button.hasAttribute('data-audio-trigger')&&!button.closest('.note-roll')))return;
+  try{primeAudio();}catch{}
+}
+document.addEventListener('pointerdown',primeFromGesture,{capture:true,passive:true});
+if(!window.PointerEvent)document.addEventListener('touchstart',primeFromGesture,{capture:true,passive:true});
 async function audioReady(){
   try{
     createAudioGraph();

@@ -94,19 +94,20 @@ document.addEventListener('visibilitychange',()=>{
 const waves={};
 function wave(f){
   if(waves[f])return waves[f];
+  if(!ctx.createPeriodicWave)return null;
   const partials={strings:[0,1,.36,.2,.13,.075,.045],wood:[0,1,.12,.28,.025,.08],brass:[0,1,.5,.3,.16,.1],percussion:[0,1,.3,.12],piano:[0,1,.32,.18,.09,.05]};
   const x=partials[f]||partials.piano;return waves[f]=ctx.createPeriodicWave(new Float32Array(x.length),new Float32Array(x));
 }
 function sound(p,d,at,f='piano',volume=.5,pan=0,owner='demo'){
   if(!ctx||d<=0)return;
-  const osc=ctx.createOscillator(),gain=ctx.createGain(),stereo=ctx.createStereoPanner();
-  osc.setPeriodicWave(wave(f));osc.frequency.value=440*2**((p-69)/12);stereo.pan.value=pan;
+  const osc=ctx.createOscillator(),gain=ctx.createGain(),stereo=ctx.createStereoPanner?.();
+  const shape=wave(f);if(shape)osc.setPeriodicWave(shape);else osc.type='sine';osc.frequency.value=440*2**((p-69)/12);if(stereo)stereo.pan.value=pan;
   const duration=Math.max(.035,d*.94),attack=Math.min(.018,duration*.12),level=volume*.18;
   gain.gain.setValueAtTime(0,at);gain.gain.linearRampToValueAtTime(level,at+attack);
   gain.gain.exponentialRampToValueAtTime(Math.max(.0001,level*(f==='piano'||f==='percussion'?.24:.72)),at+duration);
   gain.gain.exponentialRampToValueAtTime(.0001,at+duration+.045);
-  osc.connect(gain);gain.connect(stereo);stereo.connect(master);osc.start(at);osc.stop(at+duration+.05);
-  const v={osc,gain,stereo,owner};voices.add(v);osc.onended=()=>{voices.delete(v);osc.disconnect();gain.disconnect();stereo.disconnect();};
+  osc.connect(gain);if(stereo){gain.connect(stereo);stereo.connect(master);}else gain.connect(master);osc.start(at);osc.stop(at+duration+.05);
+  const v={osc,gain,stereo,owner};voices.add(v);osc.onended=()=>{voices.delete(v);osc.disconnect();gain.disconnect();stereo?.disconnect();};
 }
 function silence(owner){for(const v of voices){if(owner&&v.owner!==owner)continue;try{v.gain.gain.cancelScheduledValues(ctx.currentTime);v.gain.gain.setTargetAtTime(.0001,ctx.currentTime,.004);v.osc.stop(ctx.currentTime+.025);}catch{}}}
 let playing=false,beat=0,baseBeat=0,baseTime=0,index=0,speed=1,loopBounds=null;
